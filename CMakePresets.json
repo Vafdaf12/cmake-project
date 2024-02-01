@@ -2,29 +2,19 @@
     "version": 3,
     "configurePresets": [
         {
-            "name": "base",
-            "hidden": true,
-            "binaryDir": "${sourceDir}/build"
-        },
-        {
-            "name": "windows",
-            "inherits": "base",
-            "generator": "Ninja",
+            "name": "default",
+            "binaryDir": "${sourceDir}/build",
             "cacheVariables": {
-                "CMAKE_C_COMPILER": "cl.exe",
-                "CMAKE_CXX_COMPILER": "cl.exe"
-            },
-            "condition": {
-                "type": "equals",
-                "lhs": "${hostSystemName}",
-                "rhs": "Windows"
+                "CMAKE_C_COMPILER": "clang",
+                "CMAKE_CXX_COMPILER": "clang++"
             }
         },
         {
-            "name": "other",
-            "inherits": "base",
+            "name": "windows",
+            "inherits": "default",
+            "generator": "Ninja",
             "condition": {
-                "type": "notEquals",
+                "type": "equals",
                 "lhs": "${hostSystemName}",
                 "rhs": "Windows"
             }
